@@ -3,12 +3,15 @@ define (require) ->
 
   Octokat = require 'octokat'
 
+  unless process.env['GH_TOKEN']
+    console.error('No GitHub token provided. If you are running against the fixture files you should be ok')
+
   config =
-    USERNAME: 'octokit-test'
-    TOKEN: 'dca7f85a5911df8e9b7aeb4c5be8f5f50806ac49'
-    ORG_NAME: 'octokit-test-org'
-    REPO_USER: 'octokit-test'
-    REPO_NAME: 'octokit-test-repo' # Cannot use '.' because najax does not like it
+    USERNAME: 'octokat-test'
+    TOKEN: process.env['GH_TOKEN']
+    ORG_NAME: 'octokat-test-group'
+    REPO_USER: 'octokat-test'
+    REPO_NAME: 'octokat-test-repo' # Cannot use '.' because najax does not like it
     REPO_HOMEPAGE: 'https:/github.com/philschatz/octokat.js'
     OTHER_HOMEPAGE: 'http://example.com'
     OTHER_USERNAME: 'octokit-test2'

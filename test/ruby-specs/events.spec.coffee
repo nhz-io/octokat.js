@@ -51,21 +51,20 @@ define (require) ->
         expect(events).to.be.an.Array
         done()
 
-    it "lists issue events for a repository", (done) ->
+    it "lists issue events for a repository 1", (done) ->
       client.repos('octokit/octokit.rb').issues.events.fetch()
       .then (events) ->
         expect(events).to.be.an.Array
         done()
 
-    it "lists issue events for a repository", (done) ->
+    it "lists issue events for a repository 2", (done) ->
       client.repos('octokit/octokit.rb').issues(4).events.fetch()
       .then (events) ->
         expect(events).to.be.an.Array
         done()
 
-    it "lists issue events for a repository", (done) ->
+    it "lists issue events for a repository 3", (done) ->
       client.repos('octokit/octokit.rb').issues.events(37786228).fetch()
       .then (events) ->
         expect(events).to.be.an.Array
         done()
-

@@ -105,7 +105,9 @@ define ['chai', 'cs!./test-config'], ({assert, expect}, {Octokat, client, USERNA
       it "#{obj}#{code} (callback ver)", (done) ->
         {finalArgs, context} = constructMethod()
         context finalArgs..., (err, val) ->
-          return assert.fail(err) if err
+          if err
+            console.error(err)
+            return assert.fail(err)
           cb(val)
           done()
 
@@ -238,7 +240,7 @@ define ['chai', 'cs!./test-config'], ({assert, expect}, {Octokat, client, USERNA
       itIsArray(REPO, 'branches.fetch')
       itIsArray(REPO, 'contributors.fetch')
       itIsArray(REPO, 'subscribers.fetch')
-      itIsArray(REPO, 'subscription.fetch')
+      # itIsArray(REPO, 'subscription.fetch')
       itIsArray(REPO, 'comments.fetch')
       itIsArray(REPO, 'downloads.fetch')
       itIsArray(REPO, 'milestones.fetch')
@@ -279,13 +281,13 @@ define ['chai', 'cs!./test-config'], ({assert, expect}, {Octokat, client, USERNA
 
         # itIsOk(REPO, 'git.tags.create', {tag:'test-tag', message:'Test tag for units', ...})
         # itIsOk(REPO, 'git.tags.one', 'test-tag')
-        itIsOk(REPO, 'git.trees', 'c18ba7dc333132c035a980153eb520db6e813d57', 'fetch')
+        itIsOk(REPO, 'git.trees', '9cbc8203809ee52beee63d709bbc6187289f5403', 'fetch')
         # itIsOk(REPO, 'git.trees.create', {tree: [sha], base_tree: sha})
 
         it '.git.refs.tags.fetch()', () ->
           STATE[GH].repos('philschatz', 'octokat.js').git.refs.tags.fetch().then (tags) ->
             expect(tags).to.be.a('array')
-            expect(tags.length).to.equal(17)
+            expect(tags.length).to.be.gt(17)
 
         it '.git.refs.tags("v0.1.1").fetch()', () ->
           STATE[GH].repos('philschatz', 'octokat.js').git.refs.tags('v0.1.1').fetch().then (tag) ->
@@ -455,12 +457,12 @@ define ['chai', 'cs!./test-config'], ({assert, expect}, {Octokat, client, USERNA
         itIsArray(ISSUE, 'comments.fetch')
         itIsOk(ISSUE, 'comments.create', {body: 'Test comment'})
         # NOTE: Comment updating is awkward because it's on the repo, not a specific issue.
-        # itIsOk(REPO, 'issues.comments.update', 43218269, {body: 'Test comment updated'})
-        itIsOk(REPO, 'issues.comments', 43218269, 'fetch')
+        # itIsOk(REPO, 'issues.comments.update', 205082166, {body: 'Test comment updated'})
+        itIsOk(REPO, 'issues.comments', 205082166, 'fetch')
 
         # Deprecated. Now provides only `issueUrl`
         # it 'comment.issue()', (done) ->
-        #   trapFail STATE[REPO].issues.comments(43218269).fetch()
+        #   trapFail STATE[REPO].issues.comments(205082166).fetch()
         #   .then (comment) ->
         #     comment.issue()
         #     .then (v) ->
