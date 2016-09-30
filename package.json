@@ -4,7 +4,7 @@
   "description": "Javascript GitHub client for NodeJS or a browser using promises or callbacks",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint *.js src/**.js && coffeelint --file ./coffeelint.json src/**/*.coffee",
+    "lint": "standard *.js src/**.js | snazzy && coffeelint --file ./coffeelint.json src/**/*.coffee",
     "build": "npm run-script lint && npm run-script dist",
     "pretest": "npm run-script build",
     "test": "npm run-script test-node && npm run-script test-browser",
@@ -34,10 +34,6 @@
     "coffee-script": "^1.9.3",
     "coffeelint": "^1.15.7",
     "decaffeinate": "^2.23.3",
-    "eslint": "^3.7.0",
-    "eslint-config-standard": "^6.2.0",
-    "eslint-plugin-promise": "^2.0.1",
-    "eslint-plugin-standard": "^2.0.1",
     "grunt": "~0.4.5",
     "grunt-bump": "~0.3.1",
     "http-server": "^0.9.0",
@@ -48,6 +44,8 @@
     "parallelshell": "^2.0.0",
     "sepia": "~2.0.1",
     "sepia-js": "git://github.com/philschatz/sepia.js",
+    "snazzy": "^5.0.0",
+    "standard": "^8.3.0",
     "webpack": "^1.13.1"
   },
   "repository": {
